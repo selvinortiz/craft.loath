@@ -1,4 +1,4 @@
-$# Loath
+# Loath
 
 Crafted with hatred by [Selvin Ortiz][developer] for [Craft CMS][craftcms]
 
