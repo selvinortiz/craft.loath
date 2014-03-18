@@ -6,7 +6,6 @@ use \Mockery as m;
 class LoathServiceTest extends BaseTest
 {
 	protected $config;
-	protected $service;
 
 	public function setUp()
 	{
@@ -32,45 +31,60 @@ class LoathServiceTest extends BaseTest
 
 		$this->setComponent(craft(), 'config', $this->config);
 		$this->loadDependencies();
-		$this->loadServices();
 	}
 
-	public function testGetHatredDefinition()
+	/**
+	 * @Note
+	 * 
+	 * Getting model properties via $model->property works but...
+	 * if you use $model->getAttribute('property') you code becomes more testable
+	 */
+	public function testGetTranslatedDefinition()
 	{
-		// Should call Craft::t() and actually translate the definition
-		$this->assertNotEquals('Mocked Craft::t() was called.', $this->service->getHatredDefinition());
+		// The actual service with a translator dependency
+		$service			= new LoathService('\\Loath\\Mocks\\Craft');
 
-		// Should call \Loath\Mocks\Craft::t() and return a stubbed string
-		$this->assertEquals('Mocked Craft::t() was called.', $this->service->getHatredDefinition('\\Loathing\\Mocks\\Craft'));
+		// The actual model which can be easily mocked as well
+		$model				= new LoathModel;
+		$model->word		= 'Hatred';
+		$model->definition	= 'Intense dislike or ill will.';
+		
+		// A mocked model to illustrate how it can be done
+		$mockedModel		= m::mock('Craft\LoathModel');
+		$mockedModel->shouldReceive('validate')->andReturn(true);
+		$mockedModel->shouldReceive('getAttribute')->with('definition')->andReturn('Intense dislike or ill will.');
+
+		// Using the actual model
+		$this->assertEquals('Mocked Craft::t() was called.', $service->getTranslatedDefinition($model));
+
+		// Using the mocked model
+		$this->assertEquals('Mocked Craft::t() was called.', $service->getTranslatedDefinition($mockedModel));
 	}
 
 	public function testGetSafeOutput()
 	{
-		$html = '<p>Unit testing (ro|su)cks.</p>';
-		$this->assertTrue($this->service->getSafeOutput($html) instanceof \Twig_Markup);
-		$this->assertEquals($html, (string) $this->service->getSafeOutput($html));
+		$html		= '<p>Unit testing (ro|su)cks.</p>';
+		$service	= new LoathService;
+
+		$this->assertTrue($service->getSafeOutput($html) instanceof \Twig_Markup);
+		$this->assertEquals($html, (string) $service->getSafeOutput($html));
 	}
 
 	protected function loadDependencies()
 	{
 		$dir = __DIR__;
 		$map = array(
-			'\\Loathing\\Mocks\\Craft'	=> '/mocks/Craft.php',
+			'\\Craft\\LoathModel'	=> '/../models/LoathModel.php',
+			'\\Craft\\LoathService'	=> '/../services/LoathService.php',
+			'\\Loath\\Mocks\\Craft'	=> '/mocks/Craft.php',
 		);
 
 		foreach ($map as $classPath => $filePath)
 		{
-			if (!class_exists($classPath))
+			if (!class_exists($classPath, false))
 			{
 				require_once $dir.$filePath;
 			}
 		}
-	}
-
-	protected function loadServices()
-	{
-		require_once __DIR__ . '/../services/LoathingService.php';
-
-		$this->service = new LoathService();
 	}
 }

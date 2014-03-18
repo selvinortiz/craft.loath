@@ -1,5 +1,5 @@
 <?php
-namespace Loathing\Mocks;
+namespace Loath\Mocks;
 
 class Craft
 {

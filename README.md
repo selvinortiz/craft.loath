@@ -1,4 +1,4 @@
-# Loath
+$# Loath
 
 Crafted with hatred by [Selvin Ortiz][developer] for [Craft CMS][craftcms]
 
@@ -33,7 +33,6 @@ This is a developer targeted plugin so, I would recommend that you...
       - tests
 ```
 
----
 ## Running PHPUnit
 Running plugin tests via phpunit within craft can be tricky but hopefully this will get you started in the right direction.
 
@@ -78,8 +77,12 @@ The biggest issues I've come across during testing have to do with bootstrapping
 
 Some issues are really hard to diagnose and explain and in effort to keep this short... I figured that rather than explaining every single issue I've found, I'd just post what is currently working for me and other's I've helped and if you can't get things running just post a comment here and we can sort it out together.
 
----
 ## Changelog
+### 1.1.0
+- Added the `models/LoathModel`
+- Updated the namespace for mocks from `Loathing\Mocks` to `Loath\Mocks`
+- Improved the way static method dependencies are handled
+
 ### 1.0.0
 - Initial release
 

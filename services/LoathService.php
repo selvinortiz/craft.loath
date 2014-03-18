@@ -3,6 +3,18 @@ namespace Craft;
 
 class LoathService extends BaseApplicationComponent
 {
+	protected $translator;
+	
+	public function __construct($translatorClass=null)
+	{
+		$translator = '\\Craft\\Craft';
+
+		if (!is_null($translatorClass) && is_callable($translatorClass.'::t'))
+		{
+			$this->translator = $translatorClass;
+		}
+	}
+
 	/**
 	 * Returns the translated definition for the word hatred
 	 *
@@ -12,16 +24,16 @@ class LoathService extends BaseApplicationComponent
 	 *
 	 * @return	string
 	 */
-	public function getHatredDefinition($translator=null)
+	public function getTranslatedDefinition(BaseModel $model)
 	{
-		$definition = 'Intense dislike or ill will.';
-
-		if (is_null($translator) || !is_callable($translator.'::t'))
+		if ($model->validate())
 		{
-			return Craft::t($definition);
+			// Static method dependencies are just not elegant to work with
+			// We can use $model->property but using $model->getAttribute('property') make this method more testable
+			return call_user_func_array($this->translator.'::t', array($model->getAttribute('definition')));
 		}
 
-		return call_user_func_array($translator.'::t', array($definition));
+		return false;
 	}
 
 	/**
