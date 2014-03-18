@@ -45,7 +45,7 @@ Here is the example command that should work in most cases.
 
 ```
 
-### Commands Explained
+### Command Explained
 
 _These commands should be executed as a single command with exactly one space between each step._
 
@@ -80,7 +80,8 @@ Some issues are really hard to diagnose and explain and in effort to keep this s
 ## Changelog
 ### 1.1.0
 - Added the `models/LoathModel`
-- Updated the namespace for mocks from `Loathing\Mocks` to `Loath\Mocks`
+- Fixed a path issue in the bundled `run.sh`
+- Improved the way dependencies are loaded
 - Improved the way static method dependencies are handled
 
 ### 1.0.0
