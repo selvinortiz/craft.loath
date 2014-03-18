@@ -2,22 +2,20 @@
 
 Crafted with hatrad by [Selvin Ortiz][developer] for [Craft CMS][craftcms]
 
----
-
 **Loath** is a sample plugin designed to illustrate unit testing in [Craft][craftcms]
+
 Its goal is to help you get started with unit testing and write testable code.
 
----
-## Requirements & Dependencies
+## Requirements
 - PHP 5.3.2 _or above_
 - Craft 1.3 Build 2507 _or above_
 
-## Installation & Setup
+## Setup
 This is a developer targeted plugin so, I would recommend that you...
 
-1. Download or clone `git clone git@github.com:selvinortiz/craft.loath.git`
+1. Download or clone the repo `git clone git@github.com:selvinortiz/craft.loath.git`
 2. Place inside `craft/plugins` or symlink to `craft/plugins/loath`
-3. Run the test suite, study the code & comments, contribute and give feedback
+3. Run the test suite, study the code & comments, contribute.
 
 ## Assumed Directory Structure
 
@@ -38,8 +36,9 @@ This is a developer targeted plugin so, I would recommend that you...
 
 ---
 ## Running PHPUnit
-### From Terminal
-This example command should be executed from the command line but do note that there are other ways to do it, such as via *PHPStorm* and *Guard*.
+Running plugin tests via phpunit within craft can be tricky but hopefully this will get you started in the right direction.
+
+Here is the example command that should work in most cases.
 
 ### Full Command
 
@@ -67,11 +66,6 @@ _These commands should be executed as a single command with exactly one space be
 #### Finally, tell *PHPUnit* where to find your plugin test directory
 `/path/to/site/craft/plugins/yourplugin/tests`
 
-## Issues
-The biggest issues I've come across during testing have to do with bootstrapping dependencies.
-
-Some issues are really hard to diagnose and explain and in effort to keep this short... I figured that rather than explaining every single issue I've found, I'd just post what is currently working for me and other's I've helped and if you can't get things running just post a comment here and we can sort it out together.
-
 ### Bundled Command
 This repo includes a shell script that you can edit with your paths and run it.
 
@@ -80,11 +74,16 @@ The `loath/tests/run.sh` file should be executable `+x` and the paths should be 
 - cd into `craft/plugins/loath/tests`
 - run `./run.sh`
 
+## Issues
+The biggest issues I've come across during testing have to do with bootstrapping dependencies.
+
+Some issues are really hard to diagnose and explain and in effort to keep this short... I figured that rather than explaining every single issue I've found, I'd just post what is currently working for me and other's I've helped and if you can't get things running just post a comment here and we can sort it out together.
+
+---
 ## Changelog
 ### 1.0.0
 - Initial release
 
----
 ## Feedback & Support
 If you have any feedback or questions, please reach out to me on twitter [@selvinortiz][developer]
 
