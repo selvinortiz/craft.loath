@@ -1,9 +1,8 @@
 # Loath
 
-Crafted with hatrad by [Selvin Ortiz][developer] for [Craft CMS][craftcms]
+Crafted with hatred by [Selvin Ortiz][developer] for [Craft CMS][craftcms]
 
-**Loath** is a sample plugin designed to illustrate unit testing in [Craft][craftcms]
-
+**Loath** is a sample plugin designed to illustrate unit testing in [Craft][craftcms]  
 Its goal is to help you get started with unit testing and write testable code.
 
 ## Requirements
