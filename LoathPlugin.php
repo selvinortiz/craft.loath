@@ -20,8 +20,8 @@ class LoathPlugin extends BasePlugin
 
 	public function getName()
 	{
-		// Could use Craft::t('Loathing') instead
-		return 'Loathing';
+		// Could use Craft::t('Loath') instead
+		return 'Loath';
 	}
 
 	public function getVersion()
